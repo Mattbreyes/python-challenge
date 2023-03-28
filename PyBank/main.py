@@ -8,8 +8,9 @@ with open(file_path) as csvfile:
     
     csvreader = csv.reader(csvfile, delimiter=',')
 
+    # store header
     csv_header = next(csvreader)
-    print(f"CSV Header: {csv_header}")
+    # print(f"CSV Header: {csv_header}")
 
     # number of months included in dataset is equal to number of rows
     months = 0
@@ -41,8 +42,6 @@ with open(file_path) as csvfile:
 
     avg_change = round(sum(profit_loss_diff)/(len(profit_loss_diff)),2)
     
-    # print(avg_change)
-    
 
     # greatest increase in profits
     great_increase = max(profit_loss_diff)
@@ -62,12 +61,14 @@ with open(file_path) as csvfile:
     greatest_decrease_month = totalrows[greatest_increase_index + 1][0]
     # print(greatest_decrease_month)
 
-
+# print statements
+print('Financial Analysis')
+print('----------------------------')
 print('Total Months: ' + str(months))
 print('Total : $' + str(net_total))
 print('Average Change: $' + str(avg_change))
-print('Greatest Increase in Profits: ' + greatest_increase_month + " $" + str(great_increase))
-print('Greatest Increase in Profits: ' + greatest_decrease_month + " $" + str(great_decrease))
+print('Greatest Increase in Profits: ' + greatest_increase_month + " ($" + str(great_increase) + ')')
+print('Greatest Increase in Profits: ' + greatest_decrease_month + " ($" + str(great_decrease) + ')')
 
 output_path = "../output/new.csv"
 
@@ -89,6 +90,6 @@ with open(output_path, 'w') as txtfile:
     csvwriter.writerow(['Total Months: ' + str(months)])
     csvwriter.writerow(['Total : $' + str(net_total)])
     csvwriter.writerow(['Average Change: $' + str(avg_change)])
-    csvwriter.writerow(['Greatest Increase in Profits: ' + greatest_increase_month + " $" + str(great_increase)])
-    csvwriter.writerow(['Greatest Increase in Profits: ' + greatest_decrease_month + " $" + str(great_decrease)])
+    csvwriter.writerow(['Greatest Increase in Profits: ' + greatest_increase_month + ' ($' + str(great_increase) + ')'])
+    csvwriter.writerow(['Greatest Increase in Profits: ' + greatest_decrease_month + ' ($' + str(great_decrease) + ')'])
    

@@ -8,6 +8,7 @@ with open(file_path) as csvfile:
     
     csvreader = csv.reader(csvfile, delimiter=',')
 
+    # store header
     csv_header = next(csvreader)
     # print(f"CSV Header: {csv_header}")
 
@@ -45,14 +46,13 @@ print('-------------------------')
 for candidate,votes in candidates.items():
     print(candidate + ': ' + str(percent_votes(candidate)) + '% (' + (str(candidates[candidate])) + ')')
 
-
-
 print('-------------------------')
 
 winner = max(candidates, key=candidates.get)
 
 print("Winner: " + winner)
 
+print('-------------------------')
 
 # Open the file using "write" mode. Specify the variable to hold the contents
 
@@ -74,4 +74,5 @@ with open(output_path, 'w') as txtfile:
     for candidate,votes in candidates.items():
         csvwriter.writerow([(candidate + ': ' + str(percent_votes(candidate)) + '% (' + (str(candidates[candidate])) + ')')])
     csvwriter.writerow(["Winner: " + winner])
+    csvwriter.writerow(['----------------------------'])
    
